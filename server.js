@@ -5,8 +5,10 @@ import cors from "cors";
 
 import { notFoundError, errorHandler } from "./middlewares/error-handler.js";
 
+import itemRoutes from "./routes/item.js";
 import gameRoutes from "./routes/game.js";
 import userRoutes from "./routes/user.js";
+import weaponRoutes from "./routes/weapon.js";
 
 const app = express();
 const port = process.env.PORT || 9090;
@@ -33,6 +35,8 @@ app.use("/img", express.static("public/images"));
 
 app.use("/game", gameRoutes);
 app.use("/user", userRoutes);
+app.use("/item", itemRoutes);
+app.use("/weapon", weaponRoutes);
 
 app.use(notFoundError);
 app.use(errorHandler);
