@@ -3,29 +3,36 @@ import { body } from "express-validator";
 
 import multer from "../middlewares/multer-config.js";
 
-import { signin, signup, putOnce } from "../controllers/user.js";
+import { getAll, signin, signup, putOnce } from "../controllers/user.js";
 
 const router = express.Router();
 
-router
-  .route("/signin")
-  .post(
-    multer("avatar"),
-    body("username").isLength({ min: 5 }),
-    body("username").isLength({ min: 5 }),
-    body("wallet").isNumeric(),
-    signin
-  );
+router.route("/").get(getAll);
 
-router.route("/signup").post(signup);
+router.route("/signin").post(
+  body("username").isLength({ min: 5 }),
+  multer("avatar", 5 * 1024 * 1024),
+  body("password").isLength({ min: 5 }),
+  body("UserPhoneNumber").isNumeric(),
+
+  signin
+);
+
+router
+  .route("/signup")
+  .post(
+    body("username").isLength({ min: 5 }),
+    multer("avatar", 5 * 1024 * 1024),
+    signup
+  );
 
 router
   .route("/:id")
   .put(
-    multer("avatar"),
+    multer("avatar", 5 * 1024 * 1024),
     body("username").isLength({ min: 5 }),
-    body("username").isLength({ min: 5 }),
-    body("wallet").isNumeric(),
+    body("password").isLength({ min: 5 }),
+    body("UserPhoneNumber").isNumeric(),
     putOnce
   );
 

@@ -1,6 +1,6 @@
 import { validationResult } from "express-validator";
 
-import Item from "../models/item";
+import Item from "../models/item.js";
 
 export function getAll(req, res) {
   Item.find({})
