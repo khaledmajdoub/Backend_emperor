@@ -3,10 +3,6 @@ const { Schema, model } = mongoose;
 
 const outfitSchema = new Schema(
   {
-    idoutfit: {
-      type: String,
-      required: true,
-    },
     outfitname: {
       type: String,
       required: true,

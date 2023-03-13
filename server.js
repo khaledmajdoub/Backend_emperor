@@ -5,6 +5,7 @@ import cors from "cors";
 
 import { notFoundError, errorHandler } from "./middlewares/error-handler.js";
 
+import outfitRoutes from "./routes/outfit.js";
 import itemRoutes from "./routes/item.js";
 import gameRoutes from "./routes/game.js";
 import userRoutes from "./routes/user.js";
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/img", express.static("public/images"));
 
+app.use("/outfit", outfitRoutes);
 app.use("/game", gameRoutes);
 app.use("/user", userRoutes);
 app.use("/item", itemRoutes);
